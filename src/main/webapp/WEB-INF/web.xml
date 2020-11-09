@@ -5,10 +5,28 @@
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 	
+	<!-- 필터 등록 -->
+	<filter>
+		<filter-name>myFilter</filter-name>
+		<filter-class>me.lee.MyFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>myFilter</filter-name>
+		<servlet-name>hello</servlet-name> <!-- hello라는 서블릿에다가 적용 -->	
+	</filter-mapping>
+	
+	<!-- 리스너 등록 -->
+	<listener>
+		<listener-class>me.lee.MyListener</listener-class>
+	</listener>
+	
+	
 	<servlet>
 		<servlet-name>hello</servlet-name>
 		<servlet-class>me.lee.HelloServlet</servlet-class>		
 	</servlet>
+	<!-- servlet 맵핑 -->
 	<servlet-mapping>
 		<servlet-name>hello</servlet-name>
 		<url-pattern>/hello</url-pattern>
