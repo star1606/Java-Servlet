@@ -4,47 +4,79 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
-	
+
 	<!-- 필터보다 위에 -->
 	<!-- 애플리케이션 컨텍스트를 만드는 과정 -->
 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
-	
+
 	<!-- 컴포넌트 스캔을 하는 위치를 정하고 설정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>me.lee.AppConfig</param-value>
 	</context-param>
-	
-	
+
+
 	<!-- 필터 등록 -->
-	<filter>
-		<filter-name>myFilter</filter-name>
-		<filter-class>me.lee.MyFilter</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>myFilter</filter-name>
-		<servlet-name>hello</servlet-name> <!-- hello라는 서블릿에다가 적용 -->	
-	</filter-mapping>
-	
+	<!-- <filter> -->
+	<!-- <filter-name>myFilter</filter-name> -->
+	<!-- <filter-class>me.lee.MyFilter</filter-class> -->
+	<!-- </filter> -->
+
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>myFilter</filter-name> -->
+	<!-- hello라는 서블릿에다가 적용 -->
+	<!-- <servlet-name>hello</servlet-name> -->
+	<!-- </filter-mapping> -->
+
 	<!-- 리스너 등록 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!--contextLoaderListener가 contextClass와 contextConfigLocation의 정보를 가지고 애플리케이션 컨텍스트 만듬 -->
-	<!-- 서블릿에서는 애플리케이션 컨텍스트에 등록된 것을 꺼내서 사용할 수 있다. IoC컨테이너 활용-->
-	
-	
-	<servlet>
-		<servlet-name>hello</servlet-name>
-		<servlet-class>me.lee.HelloServlet</servlet-class>		
-	</servlet>
+	<!--contextLoaderListener가 contextClass와 contextConfigLocation의 정보를 가지고 
+		애플리케이션 컨텍스트 만듬 -->
+	<!-- 서블릿에서는 애플리케이션 컨텍스트에 등록된 것을 꺼내서 사용할 수 있다. IoC컨테이너 활용 -->
+
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>hello</servlet-name> -->
+	<!-- <servlet-class>me.lee.HelloServlet</servlet-class> -->
+	<!-- </servlet> -->
+
+
 	<!-- servlet 맵핑 -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>hello</servlet-name> -->
+	<!-- <url-pattern>/hello</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+
+
+	<!-- 디스패처서블릿이 가지고 있는 여기서 만들어진 -->
+	<!-- 애플리케이션 컨텍스트는 그 전에 리스너를 통해 만든 애플리케이션 컨텍스트를 부모로 가지고 있다. -->
+	<servlet>
+		<servlet-name>app</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>me.lee.WebConfig</param-value>
+		</init-param>
+	</servlet>
+	<!-- 디스패쳐서블릿 요청에서 /hello가 붙어있으면 메소드사용 -->
+
+	<!-- app이하의 모든 요청은 DispatcherServlet으로 들어오게한다 -->
 	<servlet-mapping>
-		<servlet-name>hello</servlet-name>
-		<url-pattern>/hello</url-pattern>
+		<servlet-name>app</servlet-name>
+		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
+
+
 </web-app>
