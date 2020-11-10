@@ -6,11 +6,13 @@
 	<display-name>Archetype Created Web Application</display-name>
 	
 	<!-- 필터보다 위에 -->
+	<!-- 애플리케이션 컨텍스트를 만드는 과정 -->
 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
 	
+	<!-- 컴포넌트 스캔을 하는 위치를 정하고 설정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>me.lee.AppConfig</param-value>
@@ -32,7 +34,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!--contextLoaderListener가 contextClass와 contextConfigLocation의 정보를 가지고 만듬 -->
+	<!--contextLoaderListener가 contextClass와 contextConfigLocation의 정보를 가지고 애플리케이션 컨텍스트 만듬 -->
 	<!-- 서블릿에서는 애플리케이션 컨텍스트에 등록된 것을 꺼내서 사용할 수 있다. IoC컨테이너 활용-->
 	
 	

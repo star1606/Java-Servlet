@@ -28,11 +28,9 @@ public class HelloServlet extends HttpServlet {
 		ApplicationContext context = (ApplicationContext) getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 		// IoC컨테이너에 있는 Bean을 꺼내서 쓰는 것임
 		// 그리고 애플리케이션 컨텍스트에서 빈을 가져온다
-		System.out.println("여기?1111111111111");
-		System.out.println("context 값: " + context);
 
 		HelloService helloService = context.getBean(HelloService.class);
-		System.out.println("여기?22222222222222222222222222");
+		
 		
 		System.out.println("doGet");
 		resp.getWriter().println("<html>");
