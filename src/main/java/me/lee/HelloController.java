@@ -19,8 +19,10 @@ public class HelloController {
 	}
 	// 뷰 객체 찾아지고 뷰에다가 모델 객체를 바인딩해서 뷰를 렌더링함
 	// 뷰를 리스폰스에다가 실어서 보냄
+	
 	@GetMapping("/sample")
 	public String sample() {
-		return "/WEB-INF/sample.jsp";
+		//return "/WEB-INF/sample.jsp";
+		return "sample";
 	}
 }
