@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	샘플임
+	심플임
 </body>
 </html>
